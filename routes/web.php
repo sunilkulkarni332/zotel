@@ -17,8 +17,9 @@ use App\Http\Controllers\PublicApiController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::get('/',[PublicApiController::class, 'getHolidays'])->name('getHolidays');
+Route::middleware(['calendrific.rate.limit'])->group(function () {
+    Route::get('/',[PublicApiController::class, 'getHolidays'])->name('getHolidays');
+});
 Route::get('/insertHolidays',[PublicApiController::class, 'insertHolidays'])->name('insertHolidays');
 Route::get('/displayPage',[PublicApiController::class, 'displayPage'])->name('displayPage');
 Route::get('/events',[PublicApiController::class, 'showCalender']);

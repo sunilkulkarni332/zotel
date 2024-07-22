@@ -19,7 +19,7 @@ class PublicApiController extends Controller
                 'year' => date('Y'), // Current year
             ]
         ]);
-
+        
         $holidays = json_decode($response->getBody()->getContents());
 
         return view('holidays.calenderViewInTable', ['holidays' => $holidays->response->holidays]);
